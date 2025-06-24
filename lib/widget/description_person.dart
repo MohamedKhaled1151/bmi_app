@@ -1,10 +1,14 @@
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
 class DescriptionPerson extends StatelessWidget {
   final String title ;
   final String value;
-  const DescriptionPerson({super.key,required this.title, required this.value});
+  final void Function()? addonPressed;
+  final void Function()? minusonPressed;
+
+  const DescriptionPerson({super.key,required this.title, required this.value, this.addonPressed, this.minusonPressed});
 
 
   @override
@@ -25,12 +29,12 @@ class DescriptionPerson extends StatelessWidget {
                 FloatingActionButton.small(
                   backgroundColor: Colors.white70,
                   shape:CircleBorder(),
-                  onPressed: (){},
+                  onPressed: addonPressed,
                   child: Icon(Icons.add,color: Colors.white,),),
                 FloatingActionButton.small(
                   backgroundColor: Colors.white70,
                   shape:CircleBorder(),
-                  onPressed: (){},
+                  onPressed: minusonPressed,
                   child: Icon(Icons.remove,color: Colors.white,),)]
           )
 

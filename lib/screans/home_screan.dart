@@ -14,6 +14,9 @@ class HomeScrean extends StatefulWidget {
 
 class _HomeScreanState extends State<HomeScrean> {
    bool isMale=true;
+   int height=100;
+   int weight=65;
+   int age=15;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -72,22 +75,49 @@ class _HomeScreanState extends State<HomeScrean> {
                   Text("Height",style: TextStyle(fontWeight:FontWeight.w300,fontSize: 30,color: Colors.white ),
                   ),
                   Text.rich( TextSpan(children:[
-                    TextSpan(text: "150",style: TextStyle(fontSize: 40,fontWeight: FontWeight.w700,color: Colors.white,)),
+                    TextSpan(text:height.toString() ,style: TextStyle(fontSize: 40,fontWeight: FontWeight.w700,color: Colors.white,)),
                     TextSpan(text: "cm",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 15,))
                   ]
                   )
                   ),
-                  Slider(activeColor: Color(0xFFE83D67),
-                      value:  .5, onChanged: (v){})
+                  Slider( max: 200,min: 1,
+                      activeColor: Color(0xFFE83D67),
+                      value:height.toDouble() ,onChanged: (v){
+                      setState(() {
+                        height=v.toInt();
+                      });
+                      })
                 ],
               ),
             ),
             SizedBox(height:29 ,),
             Row(
               children: [
-                Expanded(child: DescriptionPerson(title: "Weight", value: "60")),
+                Expanded(child: DescriptionPerson(addonPressed:(){
+                 setState(() {
+                   weight++;
+                 });
+                },
+                    minusonPressed: (){
+                      if(weight>0){
+                      }
+                      setState(() {
+                        weight--;
+                      });
+                    },
+                    title: "Weight", value: weight.toString())),
                 SizedBox(width: 9,),
-                Expanded(child:  DescriptionPerson(title: "age", value: "21")),
+                Expanded(child:  DescriptionPerson(addonPressed: (){
+
+                  setState(() {
+                    age++;
+                  });
+                },minusonPressed: (){
+                  if(age>0){}
+                  setState(() {
+                    age--;
+                  });
+                    },title: "age", value: age.toString())),
               ],
             )
           ],
